@@ -11,7 +11,7 @@ Welcome to the Microsoft Dynamics 365 Learning Path repository! This guide provi
 5. [Getting Started](#getting-started)
 6. [Contributing](#contributing)
 7. [Resources](#resources)
-8. [License](#license)
+
 
 ## Introduction
 
@@ -116,14 +116,10 @@ We welcome contributions to improve this learning path! If you have suggestions,
 
 ## Resources
 
-- [Microsoft Dynamics 365 Official Documentation](https://docs.microsoft.com/en-us/dynamics365/)
-- [Microsoft Learn: Dynamics 365 Learning Paths](https://learn.microsoft.com/en-us/training/dynamics365/)
-- [Power Automate Documentation](https://docs.microsoft.com/en-us/power-automate/)
-- [Dynamics 365 Community](https://community.dynamics.com/)
-
-## License
-
-This repository is licensed under the [MIT License](LICENSE).
+- <a href="https://docs.microsoft.com/en-us/dynamics365/" target="_blank">Microsoft Dynamics 365 Official Documentation</a>
+- <a href="https://learn.microsoft.com/en-us/training/dynamics365/" target="_blank">Microsoft Learn: Dynamics 365 Learning Paths</a>
+- <a href="https://docs.microsoft.com/en-us/power-automate/" target="_blank">Power Automate Documentation</a>
+- <a href="https://community.dynamics.com/" target="_blank">Dynamics 365 Community</a>
 
 ---
 
