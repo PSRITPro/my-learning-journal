@@ -21,10 +21,10 @@ jobs:
     - name: Run PowerShell script to create SharePoint list item
       env:
         SITE_URL: ${{ secrets.SITE_URL }}
-        CLIENTID: ${{ secrets.CLIENT_ID }}
-        CLIENTSECRET: ${{ secrets.CLIENT_SECRET }}
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         LIST_NAME: ${{ secrets.LIST_NAME }}
         TITLE: "GitHub Action Created Item"
         STATUS: "Started"
       run: |
-        powershell.exe -File ./CreateListItem.ps1 -siteUrl $env:SITE_URL -clientId $env:CLIENTID -clientSecret $env:CLIENTSECRET -listName $env:LIST_NAME -title $env:TITLE -status $env:STATUS
+        pwsh ./CreateListItem.ps1 -siteUrl $env:SITE_URL -clientId $env:CLIENT_ID -clientSecret $env:CLIENT_SECRET -listName $env:LIST_NAME -title $env:TITLE -status $env:STATUS
