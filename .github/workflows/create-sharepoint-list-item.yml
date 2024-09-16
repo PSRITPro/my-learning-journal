@@ -1,0 +1,35 @@
+name: Create SharePoint List Item
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual triggering from GitHub UI
+
+jobs:
+  create-item:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up PowerShell
+      uses: microsoft/setup-powershell@v2
+      with:
+        version: '7.x'
+
+    - name: Install PnP PowerShell
+      run: |
+        Install-Module -Name "PnP.PowerShell" -Force -AllowClobber
+
+    - name: Run PowerShell script to create SharePoint list item
+      env:
+        SITE_URL: ${{ secrets.SITE_URL }}
+        CLIENTID: ${{ secrets.CLIENT_ID }}
+        CLIENTSECRET: ${{ secrets.CLIENT_SECRET }}
+        LIST_NAME: ${{ secrets.listName }}
+        TITLE: "GitHub Action Created Item"
+        STATUS: "Started"
+      run: |
+        pwsh ./CreateListItem.ps1 -siteUrl $env:SITE_URL -clientId $env:CLIENTID -clientSecret $env:CLIENTSECRET -listName $env:LIST_NAME -title $env:TITLE -status $env:STATUS
