@@ -27,4 +27,4 @@ jobs:
         TITLE: "GitHub Action Created Item"
         STATUS: "Started"
       run: |
-        pwsh ./CreateListItem.ps1 -siteUrl $env:SITE_URL -clientId $env:CLIENT_ID -clientSecret $env:CLIENT_SECRET -listName $env:LIST_NAME -title $env:TITLE -status $env:STATUS
+        pwsh ./PowerShell/CreateListItem.ps1 -siteUrl $env:SITE_URL -clientId $env:CLIENT_ID -clientSecret $env:CLIENT_SECRET -listName $env:LIST_NAME -title $env:TITLE -status $env:STATUS
