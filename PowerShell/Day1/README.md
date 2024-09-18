@@ -27,3 +27,26 @@ $users = @("user1", "user2", "user3")
 foreach ($user in $users) {
     New-LocalUser -Name $user -Password (ConvertTo-SecureString "P@ssword" -AsPlainText -Force)
 }
+
+### Configuration Management
+Use PowerShell to configure system settings, manage services, and deploy applications.
+Example: Changing the configuration of a web server or applying group policies.
+
+Monitoring and Reporting
+Automate system health checks and generate reports on system performance.
+Example: Checking disk space on servers and sending alerts if thresholds are exceeded.
+
+```powershell
+Get-PSDrive | Where-Object { $_.Used / $_.Used -gt 0.9 } | Select-Object Name, @{Name="Usage";Expression={[math]::round($_.Used/1GB,2)}}
+
+Access to .NET Framework
+Scripts can leverage .NET libraries, allowing for advanced operations and integration with other software.
+Example: Using .NET classes for advanced string manipulation or data processing.
+
+Integration with Other Tools
+PowerShell can interact with a variety of Microsoft products like Azure, Active Directory, and SQL Server.
+Example: Managing Azure resources directly from PowerShell.
+
+```powershell
+Connect-AzAccount
+Get-AzVM
