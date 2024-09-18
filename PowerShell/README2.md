@@ -9,8 +9,7 @@ Welcome to the PowerShell Learning Plan! This repository contains a structured 3
 - [Week 3: Advanced Scripting and Automation](#week-3-advanced-scripting-and-automation)
 - [Week 4: Advanced Topics and Best Practices](#week-4-advanced-topics-and-best-practices)
 - [Capstone Project](#capstone-project)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Week 1: Introduction to PowerShell
 
