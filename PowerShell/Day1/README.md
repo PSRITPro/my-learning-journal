@@ -8,7 +8,7 @@ PowerShell is not just a tool but a complete framework for automation. It is bui
 ## Key Benefits:
 - Automation: Automates mundane tasks to save time and reduce errors.
 - Consistency: Ensures uniformity across system configurations and operations.
-- Integration: Works seamlessly with .NET and various Microsoft services.## History of PowerShell
+- Integration: Works seamlessly with .NET and various Microsoft services.
 
 ## History of PowerShell
 
