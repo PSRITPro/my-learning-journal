@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select SharePoint Site</title>
+</head>
+<body>
+    <h1>Select a SharePoint Site</h1>
+    <form action="{{ url_for('connect_site') }}" method="post">
+        <select name="site_id">
+            {% for site in sites %}
+                <option value="{{ site.id }}">{{ site.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Connect</button>
+    </form>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
