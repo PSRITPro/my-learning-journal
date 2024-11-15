@@ -21,6 +21,8 @@ Introduced as **Windows PowerShell 1.0**, it aimed to address the limitations of
 - **PowerShell 4.0 (2013)**: Featured Desired State Configuration (DSC) for configuration management.
 - **PowerShell 5.0 (2016)**: Included support for Windows Management Framework (WMF) and new cmdlets for managing cloud services.
 - **PowerShell Core (2016)**: Launched as a cross-platform version, compatible with macOS and Linux, marking a significant shift toward open-source.
+- **PowerShell 7.0 (2020)***: Continued improvements, including better error handling and cloud integration, while maintaining cross-platform support.
+
 
 ## Role in Automation and System Administration
 PowerShell plays a crucial role in modern IT environments, especially for system administrators and DevOps professionals. Here are some key roles it fulfills:
