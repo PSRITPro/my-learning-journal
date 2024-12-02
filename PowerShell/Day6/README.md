@@ -35,7 +35,7 @@ Creating or defining variables in powershell need start with $ followed by a val
 $name = "Siva"      # String
 
 # Explicitly define a variable as a string
-[string]$name = "Explicit Sting Value"
+[string]$name = "Explicit string value"
 $name.GetType()  # This will return 'System.String'
 
 $age = 30            # Integer
