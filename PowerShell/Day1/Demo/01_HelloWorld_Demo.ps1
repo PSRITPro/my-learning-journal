@@ -5,6 +5,9 @@
 
 Write-Host "Hello World"
 
+#Get PS drive
+Get-PSDrive 
+
 #Get current location
 Get-Location
 
@@ -13,14 +16,10 @@ Get-Location
 
 
 #another command to get drive for the current location 
-
 Get-Location | Select-Object Drive
 
 #Get current folder items
 Get-ChildItem
-
-#Get PS drive
-Get-PSDrive 
 
 #Get Services
 Get-Service

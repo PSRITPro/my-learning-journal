@@ -43,7 +43,7 @@ Whether you are working with files, services, or processes, understanding **obje
 The Get-Member cmdlet is the primary cmdlet for discovering the properties and methods of any object. When you pipe an object into Get-Member, it returns a list of available properties (data fields) and methods (actions).
 
 2. Using **`Select-Object`** to Filter Properties
-Once you discover the properties of an object using `Get-Member`, you can use the Select-Object cmdlet to display only the properties you are interested in. This cmdlet allows you to extract a subset of properties for easier analysis or processing.
+Once you discover the properties of an object using `Get-Member`, you can use the `Select-Object` cmdlet to display only the properties you are interested in. This cmdlet allows you to extract a subset of properties for easier analysis or processing.
 
 3. Using **`Format-List`** cmdlet displays all properties of an object in a detailed list format. It is useful when you want to see every available data field for an object, especially when dealing with objects that have many properties.
 

@@ -25,6 +25,13 @@ Examples with Multiple Cmdlets:
 ```powershell
 Get-Service | Where-Object {$_.Status -eq "Running"} | Sort-Object Name
 ```
+Explanation:
+
+    One of the key features of PowerShell’s pipeline is that it passes objects between commands, not just raw text. Each object contains properties and methods that can be used by the receiving cmdlet.
+    For example, Get-Service doesn't just send the names of files as text, but rather it sends file objects that have properties like Name, Staus, serviceType etc.
+
+    $_ (The Pipeline Variable): When an object is passed through the pipeline, it’s represented by the automatic variable $_. This is a reference to the current object being processed by the pipeline. $_ refers to each individual service in the list of services being processed by Where-Object.
+    
 ---
 Advanced Pipeline Usage:
 
@@ -80,10 +87,8 @@ Example: "When you retrieve system logs or file lists, PowerShell starts process
 
 One of the key advantages of the pipeline is that it helps reduce code complexity. With the pipeline, you can perform complex tasks in fewer lines of code, making your scripts more concise and easier to read. This not only saves time but also makes your scripts more maintainable.
 
-5. Error Handling
+5. Increases Flexibility
 
-Error handling is also made easier with the pipeline. PowerShell allows you to handle errors within the pipeline using options like -ErrorAction and -ErrorVariable. You can control how errors are managed and make sure your script runs smoothly, even if one of the cmdlets encounters an issue.
 
-6. Increases Flexibility
 
 The pipeline gives you flexibility when working with different types of objects. Whether you’re working with files, services, processes, or strings, the pipeline allows you to filter, sort, and transform the data according to your needs.
