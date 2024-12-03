@@ -24,8 +24,8 @@ This repository contains a comprehensive 30-day training schedule and related re
 - **Day 7:** Review and Practice
 
 ### Week 2: Intermediate Commands and Scripting
-- **Day 8:** Functions
-- **Day 9:** Scripting Basics
+- **Day 8:** Scripting Basics
+- **Day 9:** Functions
 - **Day 10:** Control Flow
 - **Day 11:** Loops
 - **Day 12:** Error Handling
