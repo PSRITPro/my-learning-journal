@@ -1,212 +1,173 @@
-# Introduction to PowerShell Functions
+# PowerShell Control Flow
 
-PowerShell functions are reusable blocks of code that automate common tasks, making your scripts more efficient, maintainable, and scalable. Functions allow you to perform specific actions, accept input parameters, and return results. They improve code readability by organizing tasks into logical, modular components.
+## 1. Intoduction
 
-### Key Benefits of Using Functions:
-- **Reusability**: Define a block of code once and reuse it as needed across different parts of your script.
-- **Maintainability**: Changes to functionality can be made in one place, reducing the risk of errors.
-- **Scalability**: Functions make it easy to add new features or modify existing ones without disrupting the rest of the script.
-- **Readability**: Functions break down complex tasks into smaller, manageable pieces of code, making the script easier to understand.
+### 1.1 Key Points:
 
-### Function Syntax:
+- **Control Flow** refers to the decision-making structures that determine the execution path of a script.
+- It **directs the flow of execution** by making decisions based on conditions.
+- **Executes code** based on true/false conditions.
+- You can **combine conditions** with **Logical Operators**:
+  - `-and`: Both conditions must be true.
+  - `-or`: At least one condition must be true.
+  - `-not`: Negates the condition, making true conditions false and vice versa.
+- You can **compare values** with **Comparison Operators**:
+  - `-eq`: Equal to.
+  - `-ne`: Not equal to.
+  - `-gt`: Greater than.
+  - `-lt`: Less than.
+  - `-ge`: Greater than or equal to.
+  - `-le`: Less than or equal to.
 
-To define a function in PowerShell, you use the following syntax:
+### 1.2 Key Constructs:
 
+- **if, elseif, else**: Make decisions based on conditions.
+- **switch**: Handles multiple conditions.
+
+## 2. Conditional Statements
+
+### 2.1 Conditional Statements (if, elseif, else)
+
+- Conditional statements are used to make decisions in a script, allowing the execution of different blocks of code based on whether certain conditions are met.
+- **if:** The `if` statement evaluates a condition. If the condition is true, the block of code inside the `if` statement is executed.
+- **elseif:** The `elseif` statement provides an alternative condition to check if the initial `if` condition is false. If the `if` condition is false, PowerShell evaluates the `elseif` condition. If it's true, the associated block of code will execute.
+- **else:** The `else` statement is used when none of the conditions in the `if` or `elseif` statements are true. If all conditions are false, the block of code inside `else` will be executed.
+
+### Example:
 ```powershell
-function FunctionName {
-    # Function body
-    # Code that defines the function's actions
+$x = 10
+if ($x -gt 5) {
+    Write-Host "x is greater than 5"
+} elseif ($x -eq 5) {
+    Write-Host "x is equal to 5"
+} else {
+    Write-Host "x is less than 5"
 }
 ```
+### 2.2 Conditional Statements (switch)
 
-### 2.Key Concepts
+- The `switch` statement is used to handle multiple conditions or choices in a more structured and readable way compared to using multiple `if-elseif-else` statements.
+- It evaluates a variable or expression and compares it against a set of possible values.
+- If a match is found, the corresponding block of code is executed.
+- The `default` block is an optional part of the `switch` statement that executes when none of the specified values match the evaluated variable or expression.
 
-#### 2.1 Parameters: Functions Accept Input to Customize Behavior
-
-One of the core features of PowerShell functions is the ability to accept input via **parameters**. This allows functions to be dynamic and reusable, as you can pass different values each time the function is called.
-
-- Example:
-
+### Example:
 ```powershell
-function Greet-User {
-    param([string]$UserName)
-    Write-Host "Hello, $UserName!"
+$day = "Monday"
+switch ($day) {
+    "Monday" { Write-Host "Start of the week" }
+    "Friday" { Write-Host "End of the week" }
+    default { Write-Host "Mid-week" }
 }
 ```
 
-#### 2.2 Returning Values: Functions Can Return Results
+## 3 Advanced Control Flow Features
 
-Functions in PowerShell can return results to the caller. This feature is useful when you need to calculate values or gather data that will be used later in your script. You can either return values explicitly using the `return` keyword or implicitly, where the last evaluated expression in the function is automatically returned.
+### 3.1 Nested Conditionals
+- Nested conditionals allow you to place `if` statements or other control flow structures inside one another, enabling more complex decision-making.
+- This approach is useful when you need to evaluate multiple layers of conditions before deciding on an action.
 
-- **Example for Implicit Return**
-By default, the last expression evaluated within a function is returned. You don't need to use the `return` keyword if you simply want to return the result of the last expression.
-
+### Example:
 ```powershell
-function Add-Numbers {
-    param([int]$Num1, [int]$Num2)
-    $Num1 + $Num2
-}
-```
-
-**Example for Explicit Return:**
-
-```powershell
-function Add-Numbers {
-    param([int]$Num1, [int]$Num2)
-    return $Num1 + $Num2
-}
-```
-#### 2.3 Default Values: Parameters Can Have Default Values
-
-In PowerShell, parameters can have **default values**, which are used if the caller does not provide a value when calling the function. This feature makes functions more flexible and simplifies function calls when specific values aren't always necessary.
-
-- **Example with Default Values**
-
-```powershell
-function Greet-User {
-    param([string]$UserName = "Guest")
-    Write-Host "Hello, $UserName!"
-}
-```
-
-- In this example, the $UserName parameter is assigned a default value of "Guest". If no value is provided for $UserName, the function will use "Guest" as the default.
-
-### 3. Examples
-
-- **Funtion Without Parameters**
-
-```Powershell
-function Greet-User {
-    Write-Host "Hello, Guest!"  # Output a greeting message without parameters
-}
-# Call the function
-Greet-User  # This will output: "Hello, Guest!"
-```
-
-- **Funtion With Parameters**
-
-```Powershell
-# Define the function with parameters
-function Greet-User {
-    param(
-        [string]$UserName,  # Parameter to accept the user's name
-        [string]$Greeting = "Hello"  # Optional parameter with a default value
-    )
-    
-    Write-Host "$Greeting, $UserName!"  # Output a personalized greeting message
-}
-
-# Call the function with parameters
-Greet-User -UserName "Alice" -Greeting "Good morning"  # Output: "Good morning, Alice!"
-
-# Call the function with just the required parameter
-Greet-User -UserName "Bob"  # Output: "Hello, Bob!"
-```
-
-- **Check-FileExistence (No Parameters)**
-
-```Powershell
-# Define the function without parameters
-function Check-FileExistence {
-    $FilePath = "C:\temp\example.txt"  # Predefined file path
-
-    # Check if the file exists
-    if (Test-Path $FilePath) {
-        Write-Host "The file '$FilePath' exists."
-    } else {
-        Write-Host "The file '$FilePath' does not exist."
+$x = 10
+if ($x -gt 5) {
+    if ($x -lt 15) {
+        Write-Host "x is between 5 and 15"
     }
 }
-
-# Call the function
-Check-FileExistence  # This will output the existence of the predefined file path
 ```
 
-- **Check-FileExistence (With Parameters)**
+### 3.2 Logical and Comparison Operators with Nested Conditions
 
-```Powershell
-# Define the function with parameters
-function Check-FileExistence {
-    param(
-        [string]$FilePath  # Parameter to accept the file path
-    )
-    
-    # Check if the file exists
-    if (Test-Path $FilePath) {
-        Write-Host "The file '$FilePath' exists."
-    } else {
-        Write-Host "The file '$FilePath' does not exist."
-    }
-}
+- You can combine logical operators (`-and`, `-or`, `-not`) and comparison operators (`-eq`, `-gt`, `-lt`, etc.) to create more complex conditions for decision-making.
+- This allows for intricate checks where multiple conditions must be evaluated together to determine the flow of execution.
 
-# Call the function with a file path as a parameter
-Check-FileExistence -FilePath "C:\temp\example.txt"  # Output: "The file 'C:\temp\example.txt' exists." or "The file 'C:\temp\example.txt' does not exist."
-
-# Call the function with a different file path
-Check-FileExistence -FilePath "C:\temp\nonexistentfile.txt"  # Output: "The file 'C:\temp\nonexistentfile.txt' does not exist."
-
-```
-### 4. Best Practices for PowerShell Functions
-
-When writing PowerShell functions, following best practices can help ensure your code is readable, maintainable, and scalable. Here are some key best practices to follow when working with PowerShell functions:
-
-#### 4.1 Use Descriptive Function Names
-
-- **Why it matters**: A function's name should clearly describe what the function does. This makes the code easier to understand for others and for yourself when revisiting it.
-- **Example**: Use names like `Get-UserInfo` instead of generic names like `DoTask`.
-
-#### 4.2 Modularize Code into Small, Focused Functions
-
-A key best practice in PowerShell scripting is to ensure that each function **does one thing and does it well**. Breaking down complex tasks into smaller, focused functions helps improve:
-
-- **Readability**: Smaller, well-defined functions are easier to understand and follow.
-- **Maintainability**: It’s easier to update or debug small functions than larger ones.
-- **Reusability**: Small, focused functions can be reused in different contexts without unnecessary dependencies.
-
-By modularizing code, you can simplify your scripts, make them more scalable, and increase their efficiency.
-
-#### 4.3 Handle Errors and Validate Inputs
-
-Error handling and input validation are crucial for writing robust and reliable PowerShell functions. By properly handling errors and validating inputs, you ensure that your functions behave predictably, even when something goes wrong or when unexpected input is provided. This helps avoid runtime crashes and unexpected behavior.
-
-PowerShell provides a powerful way to handle errors using `try`, `catch`, and `finally` blocks. This allows you to catch errors, log them, and take corrective actions without crashing the script.
-
-- **`try` block**: Contains the code that may throw an error.
-- **`catch` block**: Contains the code that runs if an error occurs in the `try` block.
-- **`finally` block**: (Optional) Contains code that runs after the `try` and `catch` blocks, regardless of whether an error occurred.
-
-- Example: Using `try-catch` for Error Handling
-
-Type validation ensures that the input is of the expected data type. For example, if your function expects an integer, you can check if the input is indeed an integer.
-
-- Example: Type Validation for Integer, Range Validation, Null or Empty Check, Regex (Regular Expression) Validation, File Existence Check, Array or List Validation
-
-#### 4.4 Use Parameters for Flexibility
-
-Using parameters in your PowerShell functions allows you to make your scripts more flexible and reusable. Parameters provide a way to pass input values to functions, which can modify their behavior without changing the function's internal code. This makes your functions more adaptable to different scenarios and reduces the need for repetitive code.
+### Example:
 
 ```powershell
-function Greet-User {
-    param(
-        [string]$UserName,
-        [string]$Greeting
-    )
-    
-    Write-Host "$Greeting, $UserName!"
+$x = 10
+$y = 20
+if (($x -gt 5 -and $y -lt 30) -or $y -eq 20) {
+    Write-Host "Conditions met!"
 }
-
-# Calling the function with positional parameters
-Greet-User "Alice" "Hello"
-
-# Calling the function with named parameters
-Greet-User -UserName "Alice" -Greeting "Hello"  # Output: "Hello, Alice!"
 ```
 
-### 5. Use Cases
+## 4. Examples
 
-- **System Administration:** Automating routine system maintenance, software installations, user management, and more.
-- **Cloud Management:** Managing cloud resources in Azure, AWS, or Google Cloud.
-- **DevOps Automation:** Automating build, test, and deployment pipelines.
-- **Network Management:** Managing network configurations and devices.
-- **Report Generation:** Automating data collection and report generation from logs or databases.
-- **Backup and Recovery:** Automating backup processes and restoring files or system states.
+### Example 1: Check Disk Space
+```powershell
+# Set threshold for low disk space (in GB)
+$lowDiskSpaceThreshold = 10
+
+# Get the disk space info for the C: drive
+$disk = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID = 'C:'"
+
+# Calculate free space in GB
+$freeSpaceGB = [math]::round($disk.FreeSpace / 1GB, 2)
+
+# Check if the free space is below the threshold
+if ($freeSpaceGB -lt $lowDiskSpaceThreshold) {
+    Write-Host "Warning: Disk space is low! Only $freeSpaceGB GB left on the C: drive." -ForegroundColor Red
+}
+elseif ($freeSpaceGB -eq $lowDiskSpaceThreshold) {
+    Write-Host "Alert: Disk space is exactly at the threshold! $freeSpaceGB GB left." -ForegroundColor Yellow
+}
+else {
+    Write-Host "Disk space is sufficient. $freeSpaceGB GB available on the C: drive." -ForegroundColor Green
+}
+```
+This script is designed to monitor the available free space on the C: drive and provide alerts based on the available storage. 
+
+- **Threshold:** The script checks whether the available free space on the C: drive is less than 10 GB. This threshold can be adjusted based on your needs.
+
+- **Get-WmiObject:** The script uses `Get-WmiObject` to fetch disk information for the C: drive. It retrieves details such as the total size and free space available on the drive.
+
+- **If Statements:**The `if` block checks the amount of free space on the C: drive and provides appropriate messaging based on the following conditions:
+
+- **Less than 10 GB**: If the free space is below the threshold, a warning message is displayed in red.
+- **Exactly 10 GB**: If the free space is exactly at the threshold, an alert is shown in yellow.
+- **Greater than 10 GB**: If the free space is above the threshold, a success message is shown in green.
+
+
+### Example 2: Check Disk Space and Send Email Alert
+```powershell
+# Set the threshold for free space in GB
+$threshold = 10
+
+# Get disk information for C: drive
+$disk = Get-WmiObject -Class Win32_LogicalDisk -Filter "DeviceID='C:'"
+
+# Convert the free space from bytes to GB
+$freeSpaceGB = [math]::round($disk.FreeSpace / 1GB, 2)
+
+# Define email parameters
+$smtpServer = "smtp.yourserver.com"
+$from = "your-email@domain.com"
+$to = "recipient@domain.com"
+$subject = "Disk Space Alert - C: Drive"
+$body = ""
+
+# Check the free space and display appropriate message
+if ($freeSpaceGB -lt $threshold) {
+    $message = "Warning: Low disk space on C: drive. Free space: $freeSpaceGB GB"
+    $body = "Disk space on C: drive is below the threshold. $message"
+    Write-Host $message -ForegroundColor Red
+    
+    # Send an email notification
+    Send-MailMessage -SmtpServer $smtpServer -From $from -To $to -Subject $subject -Body $body -BodyAsHtml
+} elseif ($freeSpaceGB -eq $threshold) {
+    $message = "Alert: Disk space on C: drive is exactly $threshold GB."
+    $body = "Disk space on C: drive is exactly at the threshold. $message"
+    Write-Host $message -ForegroundColor Yellow
+
+    # Send an email notification
+    Send-MailMessage -SmtpServer $smtpServer -From $from -To $to -Subject $subject -Body $body -BodyAsHtml
+} else {
+    $message = "Success: Sufficient disk space on C: drive. Free space: $freeSpaceGB GB"
+    $body = "Disk space on C: drive is sufficient. $message"
+    Write-Host $message -ForegroundColor Green
+    
+    # Send an email notification
+    Send-MailMessage -SmtpServer $smtpServer -From $from -To $to -Subject $subject -Body $body -BodyAsHtml
+}
+```
